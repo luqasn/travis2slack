@@ -1,0 +1,28 @@
+templates:
+  passed:
+    message: YAY! Build of {{.repository.name}} was successful!
+  master_failed:
+    message: Oh noes! Deployment of {{.repository.name}} failed!
+  default:
+    message: Build of {{.repository.name}} {{.state}}
+
+filters:
+  none: "true"
+  passed: >
+    {{if eq .state "passed"}}true{{end}}
+  failed: >
+    {{if ne .state "passed"}}true{{end}}
+  pull_request: >
+    {{if .pull_request}}true{{end}}
+  master_failed: >
+    {{if and (eq .branch "master") (ne .state "passed") (not .pull_request)}}true{{end}}
+
+defaultTemplate: >
+  [[.state "default"]]
+defaultFilter: >
+  [["none"]]
+
+port: 8080
+disableVerification: false
+travis:
+  publicKeyUrl: "https://api.travis-ci.com/config"
