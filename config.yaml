@@ -22,7 +22,8 @@ defaultTemplate: >
 defaultFilter: >
   [["none"]]
 
-port: 8080
-disableVerification: false
+http:
+  listenAddress: ":8080"
 travis:
+  disableVerification: false
   publicKeyUrl: "https://api.travis-ci.com/config"

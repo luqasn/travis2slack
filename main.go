@@ -34,7 +34,7 @@ type templateWithFilter struct {
 
 func (bot *Bot) DeployHandler(w http.ResponseWriter, r *http.Request) {
 	err := bot.travis.VerifySignature(r)
-	if err != nil && !bot.config.DisableVerification {
+	if err != nil && !bot.config.Travis.DisableVerification {
 		RespondWithError(w, errors.New("unauthorized payload").Error())
 		return
 	}

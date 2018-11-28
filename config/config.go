@@ -16,7 +16,8 @@ type Slack struct {
 }
 
 type Travis struct {
-	PublicKeyURL string
+	PublicKeyURL        string
+	DisableVerification bool
 }
 
 type Templates map[string]Template
@@ -26,14 +27,13 @@ type HTTP struct {
 }
 
 type Config struct {
-	Slack               Slack
-	Travis              Travis
-	Templates           Templates
-	Filters             Filters
-	DisableVerification bool
-	DefaultTemplate     string
-	DefaultFilter       string
-	HTTP                HTTP
+	Slack           Slack
+	Travis          Travis
+	Templates       Templates
+	Filters         Filters
+	DefaultTemplate string
+	DefaultFilter   string
+	HTTP            HTTP
 }
 
 func LoadConfig() Config {
